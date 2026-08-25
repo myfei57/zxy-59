@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>公交充电场站 - 车辆</title>
+</head>
+<body>
+  <h1>车辆调度</h1>
+  <table border="1" cellspacing="0" cellpadding="6">
+    <thead><tr><th>车辆</th><th>线路</th><th>充电桩</th><th>发班</th></tr></thead>
+    <tbody id="buses"></tbody>
+  </table>
+  <script>
+    fetch('/api/buses').then(r => r.json()).then(rows => {
+      const tbody = document.getElementById('buses');
+      tbody.innerHTML = rows.map(v =>
+        '<tr><td>' + v.id + '</td><td>' + v.route + '</td><td>' + v.pile + '</td><td>' + v.departure + '</td></tr>'
+      ).join('');
+    });
+  </script>
+</body>
+</html>
