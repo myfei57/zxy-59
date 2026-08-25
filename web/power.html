@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>公交充电场站 - 功率</title>
+</head>
+<body>
+  <h1>功率与并网容量</h1>
+  <div id="power"></div>
+  <script>
+    fetch('/api/power').then(r => r.json()).then(v => {
+      document.getElementById('power').innerText =
+        '并网容量 ' + v.capacity + ' W，累计充电量 ' + v.quota + ' kWh';
+    });
+  </script>
+</body>
+</html>
