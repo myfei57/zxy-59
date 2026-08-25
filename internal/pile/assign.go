@@ -1,7 +1,10 @@
 package pile
 
 func (s *Service) Assign(busID string) (string, error) {
-	percent, _ := s.soc.Lookup(busID)
+	percent, err := s.soc.Lookup(busID)
+	if err != nil {
+		return "", err
+	}
 	kind := "slow"
 	if percent <= 40 {
 		kind = "fast"
