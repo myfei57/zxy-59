@@ -2,10 +2,10 @@ package plan
 
 func (s *Service) Update(busID, pileID string, sequence int) error {
 	p := Plan{BusID: busID, PileID: pileID, Sequence: sequence}
-	if err := s.apply(p); err != nil {
+	if err := s.store.SavePlan(busID, p); err != nil {
 		return err
 	}
-	return s.store.SavePlan(busID, p)
+	return s.apply(p)
 }
 
 func (s *Service) apply(p Plan) error {
