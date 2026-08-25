@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>公交充电场站 - 充电桩</title>
+</head>
+<body>
+  <h1>充电桩状态</h1>
+  <table border="1" cellspacing="0" cellpadding="6">
+    <thead><tr><th>编号</th><th>类型</th><th>占用</th><th>电流</th><th>合闸</th></tr></thead>
+    <tbody id="piles"></tbody>
+  </table>
+  <script>
+    fetch('/api/piles').then(r => r.json()).then(rows => {
+      const tbody = document.getElementById('piles');
+      tbody.innerHTML = rows.map(p =>
+        '<tr><td>' + p.number + '</td><td>' + p.kind + '</td><td>' + p.owner + '</td><td>' + p.current + '</td><td>' + p.contactor + '</td></tr>'
+      ).join('');
+    });
+  </script>
+</body>
+</html>
