@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>公交充电场站 - 告警</title>
+</head>
+<body>
+  <h1>场站告警</h1>
+  <ul id="alarms"></ul>
+  <script>
+    const items = ['无活跃告警'];
+    document.getElementById('alarms').innerHTML =
+      items.map(x => '<li>' + x + '</li>').join('');
+  </script>
+</body>
+</html>
