@@ -1,6 +1,8 @@
 package pile
 
 func (s *Service) Allocate(number, busID string) bool {
+	s.mu.Lock()
+	defer s.mu.Unlock()
 	p := s.piles[number]
 	if p == nil || p.Owner != "" {
 		return false
